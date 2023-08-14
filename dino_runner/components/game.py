@@ -121,8 +121,8 @@ class Game:
             draw_message_component("APERTE QUALQUER TECLA PARA INICIAR", self.screen)
         else:
             draw_message_component(
-                "PRESSIONE QUALQUER TECLA PARA REINICIAR", 
-                self.screen, 
+                "PRESSIONE QUALQUER TECLA PARA REINICIAR",
+                self.screen,
                 pos_x_center= half_screen_height + 140
             )
             draw_message_component(
