@@ -35,6 +35,8 @@ class Game:
         while self.running:
             if not self.playing:
                 self.show_menu()
+                self.handle_events_on_menu() ## MUDEI DE LUGAR
+                
         
         pygame.display.quit()
         pygame.quit()
@@ -113,7 +115,7 @@ class Game:
                 self.player.type = DEFAULT_TYPE
     
     def show_menu(self):
-        self.screen.fill((255, 255, 255))
+        self.screen.fill("white")
         half_screen_height = SCREEN_HEIGHT // 2
         half_screen_width = SCREEN_WIDTH // 2
 
@@ -131,8 +133,17 @@ class Game:
                 pos_y_center= half_screen_width - 100
             )
             self.screen.blit(ICON, (half_screen_width - 40, half_screen_height - 30))
-            
+    
+    def handle_events_on_menu(self): ## ADICIONEI
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.playing = False
+                self.running = False
+
+            elif event.type == pygame.KEYDOWN:
+                self.run()
+
         pygame.display.flip()
 
-        self.handle_events_on_menu()
+    
             
