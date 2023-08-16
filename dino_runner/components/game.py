@@ -2,7 +2,7 @@ import pygame
 
  
 
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
+from dino_runner.utils.constants import GROUND, BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
 
 from dino_runner.components.dinosaur import Dinosaur
 
@@ -25,7 +25,9 @@ class Game:
         self.death_count = 0
         self.game_speed = 20
         self.x_pos_bg = 0
-        self.y_pos_bg = 380
+        self.y_pos_bg = 70
+        self.x_pos_ground = 0
+        self.y_pos_ground = 380
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
         self.power_up_manager = PowerUpManager()
@@ -68,12 +70,15 @@ class Game:
     def update_score(self):
         self.score += 1
         if self.score % 100 == 0:
-            self.game_speed += 5
+            self.game_speed += 1
     
     def draw(self):
         self.clock.tick(FPS)
         self.screen.fill((255, 255, 255))
+        
         self.draw_background()
+        self.draw_ground()
+
         self.player.draw(self.screen)
         self.obstacle_manager.draw(self.screen)
         self.draw_score()
@@ -89,7 +94,16 @@ class Game:
         if self.x_pos_bg <= -image_width:
             self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
             self.x_pos_bg = 0
-            self.x_pos_bg -= self.game_speed
+        self.x_pos_bg -= self.game_speed/2
+    
+    def draw_ground(self):
+        image_width = GROUND.get_width()
+        self.screen.blit(GROUND, (self.x_pos_ground, self.y_pos_ground))
+        self.screen.blit(GROUND, (image_width + self.x_pos_ground, self.y_pos_ground))
+        if self.x_pos_ground <= -image_width:
+            self.screen.blit(GROUND, (image_width + self.x_pos_ground, self.y_pos_ground))
+            self.x_pos_ground = 0
+        self.x_pos_ground -= self.game_speed
 
     def draw_score(self):
         draw_message_component(

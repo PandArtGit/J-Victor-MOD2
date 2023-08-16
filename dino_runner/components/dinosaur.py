@@ -2,7 +2,7 @@ import pygame
 
 from pygame.sprite import Sprite
 
-from dino_runner.utils.constants import RUNNING, JUMPING, DUCKING, DEFAULT_TYPE, SHIELD_TYPE, DUCKING_SHIELD, JUMPING_SHIELD, RUNNING_SHIELD
+from dino_runner.utils.constants import RUNNING, JUMPING, DUCKING, DEFAULT_TYPE, SHIELD_TYPE, DUCKING_SHIELD, JUMPING_SHIELD, RUNNING_SHIELD, FPS
 
  
 
@@ -27,6 +27,8 @@ class Dinosaur(Sprite):
         self.dino_rect = self.image.get_rect()
         self.dino_rect.x = X_POS
         self.dino_rect.y = Y_POS
+        self.frameCount = 1  # cat anim
+        self.nyanFrame = 0  # cat anim
         self.step_index = 0
         self.dino_run = True
         self.dino_jump = False
@@ -60,16 +62,36 @@ class Dinosaur(Sprite):
             self.dino_run = True
             self.dino_jump = False
             self.dino_duck = False
-        
+
+        self.frameCount += 1  # cat anim
+        if self.frameCount > FPS:  # cat anim
+            self.frameCount = 1  # cat anim
+
+        if self.nyanFrame > 5:  # cat anim
+            self.nyanFrame = 0  # cat anim
+            self.frameCount = 0  # cat anim
+
         if self.step_index >= 9:
             self.step_index = 0
+        
+        
     
     def run(self):
-        self.image = RUN_IMG[self.type][self.step_index // 5] 
+
+
+        self.image = RUN_IMG[self.type][self.step_index // 5]  # cat anim (padrão: self.steep_index)
+        
         self.dino_rect = self.image.get_rect()
         self.dino_rect.x = X_POS
         self.dino_rect.y = Y_POS
+        # a animação tem 6 frames, se quero passar a uma taxa de 12 FPS
+        # if self.frameCount == (self.nyanFrame + 1) * 2:  # cat anim
+        #     self.nyanFrame += 1  # cat anim
+
+        # tenho que passar o frame a cada 2 frames da tela
+
         self.step_index += 1
+        
     
     def jump(self):
         self.image = JUMP_IMG[self.type]
