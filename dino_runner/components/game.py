@@ -2,7 +2,15 @@ import pygame
 
  
 
-from dino_runner.utils.constants import GROUND, BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
+from dino_runner.utils.constants import(
+    GROUND,
+    BG,
+    ICON,
+    SCREEN_HEIGHT,
+    SCREEN_WIDTH,
+    TITLE,FPS,
+    DEFAULT_TYPE
+)
 
 from dino_runner.components.dinosaur import Dinosaur
 
@@ -23,7 +31,13 @@ class Game:
         self.running = False
         self.score = 0
         self.death_count = 0
-        self.game_speed = 20
+
+######## difficulty ###########
+        self.game_speed = 0 
+        self.speed_add = 0.1
+        self.point_of_speed = 50
+#-------------------------------
+
         self.x_pos_bg = 0
         self.y_pos_bg = 0
         self.x_pos_ground = 0
@@ -47,7 +61,7 @@ class Game:
         self.playing = True
         self.obstacle_manager.reset_obstacles()
         self.power_up_manager.reset_power_ups()
-        self.game_speed = 20
+        self.game_speed = 10
         self.score = 0
         while self.playing:
             self.events()
@@ -69,8 +83,8 @@ class Game:
     
     def update_score(self):
         self.score += 1
-        if self.score % 100 == 0:
-            self.game_speed += 1
+        if self.score % self.point_of_speed == 0:
+            self.game_speed += self.speed_add
     
     def draw(self):
         self.clock.tick(FPS)

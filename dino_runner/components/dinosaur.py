@@ -2,7 +2,17 @@ import pygame
 
 from pygame.sprite import Sprite
 
-from dino_runner.utils.constants import RUNNING, DUCKING, DEFAULT_TYPE, SHIELD_TYPE, DUCKING_SHIELD, RUNNING_SHIELD, FPS
+from dino_runner.utils.constants import (
+    RUNNING,
+    DUCKING,
+    DEFAULT_TYPE,
+    SHIELD_TYPE,
+    DUCKING_SHIELD,
+    RUNNING_SHIELD,
+    FPS,
+    ANIM_FPS,
+    GRAVITY_FORCE
+)
 
  
 
@@ -16,7 +26,7 @@ Y_POS = 310
 
 Y_POS_DUCK = 360
 
-JUMP_VEL = 8.5
+JUMP_VEL = 5
 
 class Dinosaur(Sprite):
     def __init__(self):
@@ -77,24 +87,22 @@ class Dinosaur(Sprite):
         self.dino_rect = self.image.get_rect()
         self.dino_rect.x = X_POS
         self.dino_rect.y = Y_POS
-        # a animação tem 6 frames, se quero passar a uma taxa de 12 FPS
-        if self.frameCount == (self.nyanFrame + 1) * 2:  # cat anim
+
+        # a animação tem 6 frames, se quero passar a uma taxa de 14 FPS devo dividir o frame rate por 14
+        if self.frameCount == (self.nyanFrame + 1) * ANIM_FPS:  # cat anim
             self.nyanFrame += 1  # cat anim
-
-        # tenho que passar o frame a cada 2 frames da tela
-
-        
         
     
     def jump(self):
         self.image = RUN_IMG[self.type][self.nyanFrame]  # cat anim (padrão: self.steep_index)
 
-        if self.frameCount == (self.nyanFrame + 1) * 2:  # cat anim
+    # a animação tem 6 frames, se quero passar a uma taxa de 14 FPS devo dividir o frame rate por 14
+        if self.frameCount == (self.nyanFrame + 1) * ANIM_FPS:  # cat anim
             self.nyanFrame += 1  # cat anim
 
         if self.dino_jump:
-            self.dino_rect.y -= self.jump_vel * 4
-            self.jump_vel -= 0.8
+            self.dino_rect.y -= self.jump_vel * ANIM_FPS
+            self.jump_vel -= GRAVITY_FORCE/50
         if self.jump_vel < -JUMP_VEL:
             self.dino_rect_y = Y_POS
             self.dino_jump = False
@@ -106,13 +114,11 @@ class Dinosaur(Sprite):
         self.dino_rect = self.image.get_rect()
         self.dino_rect.x = X_POS
         self.dino_rect.y = Y_POS_DUCK
-        # a animação tem 6 frames, se quero passar a uma taxa de 12 FPS
-        if self.frameCount == (self.nyanFrame + 1) * 2:  # cat anim
+
+        # a animação tem 6 frames, se quero passar a uma taxa de 14 FPS devo dividir o frame rate por 14
+        if self.frameCount == (self.nyanFrame + 1) * ANIM_FPS:  # cat anim
             self.nyanFrame += 1  # cat anim
 
-        # tenho que passar o frame a cada 2 frames da tela
-
-    
     def draw(self, screen):
         screen.blit(self.image, (self.dino_rect.x, self.dino_rect.y))
 

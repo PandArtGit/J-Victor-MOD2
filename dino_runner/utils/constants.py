@@ -5,37 +5,49 @@ import os
 TITLE = "NYAN RUNNER"
 SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
-FPS = 30
+
+####### GAME LOGIC ######
+FPS = 60
+ANIM_FPS = FPS // 14
+GRAVITY_FORCE = 9.5
+#---------------------------
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 
 # Assets Constants
 ICON = pygame.image.load(os.path.join(IMG_DIR, "NYANNNN.png"))
 
-cat_sheet = pygame.image.load(os.path.join(IMG_DIR, "Cat/NyanCatSpriteSheet.png"))  # cat anim
-RUNNING = []  # cat anim
-for i in range(6):  # cat anim
-    img = cat_sheet.subsurface((i * 136, 0), (136, 84))  # cat anim
-    RUNNING.append(img)  # cat anim
 
-cat_sheet = pygame.image.load(os.path.join(IMG_DIR, "Cat/NyanCatSpriteSheet_SHIELD.png"))  # cat anim
-RUNNING_SHIELD = []  # cat anim
-for i in range(6):  # cat anim
-    img = cat_sheet.subsurface((i * 136, 0), (136, 84))  # cat anim
-    RUNNING_SHIELD.append(img)  # cat anim
+
+################# ANIMAÇÕES #################################################################
+################################### CAT RUN ######################################################
+cat_sheet = pygame.image.load(os.path.join(IMG_DIR, "Cat/NyanCatSpriteSheet.png"))   
+RUNNING = []   
+for i in range(6):   
+    img = cat_sheet.subsurface((i * 136, 0), (136, 84))   
+    RUNNING.append(img)   
+
+cat_sheet = pygame.image.load(os.path.join(IMG_DIR, "Cat/NyanCatSpriteSheet_SHIELD.png"))   
+RUNNING_SHIELD = []   
+for i in range(6):   
+    img = cat_sheet.subsurface((i * 136, 0), (136, 84)) 
+    RUNNING_SHIELD.append(img)  
+
 #####################################################################################################################
+################################### CAT DUCKING ######################################################
+cat_sheet_ducking = pygame.image.load(os.path.join(IMG_DIR, "Cat/NyanCatSpriteSheet_DUCK.png"))   
+DUCKING = []   
+for i in range(6):   
+    img = cat_sheet_ducking.subsurface((i * 136, 0), (136, 34))   
+    DUCKING.append(img)   
 
-cat_sheet_ducking = pygame.image.load(os.path.join(IMG_DIR, "Cat/NyanCatSpriteSheet_DUCK.png"))  # cat anim
-DUCKING = []  # cat anim
-for i in range(6):  # cat anim
-    img = cat_sheet_ducking.subsurface((i * 136, 0), (136, 34))  # cat anim
-    DUCKING.append(img)  # cat anim
+cat_sheet_ducking_SHIELD = pygame.image.load(os.path.join(IMG_DIR, "Cat/NyanCatSpriteSheet_DUCKSHIELD.png"))   
 
-cat_sheet_ducking_SHIELD = pygame.image.load(os.path.join(IMG_DIR, "Cat/NyanCatSpriteSheet_DUCKSHIELD.png"))  # cat anim
+DUCKING_SHIELD = []   
+for i in range(6):   
+    img = cat_sheet_ducking_SHIELD.subsurface((i * 136, 0), (136, 34))   
+    DUCKING_SHIELD.append(img)
 
-DUCKING_SHIELD = []  # cat anim
-for i in range(6):  # cat anim
-    img = cat_sheet_ducking_SHIELD.subsurface((i * 136, 0), (136, 34))  # cat anim
-    DUCKING_SHIELD.append(img)  # cat anim
+########################## SPRITES OF GAME ##################################################################
 ######################################################################################################################
 
 SMALL_CACTUS = [
@@ -49,20 +61,20 @@ LARGE_CACTUS = [
     pygame.image.load(os.path.join(IMG_DIR, "Cactus/LargeCactus3.png")),
 ]
 
-BIRD = [
-    pygame.image.load(os.path.join(IMG_DIR, "Bird/Bird1.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Bird/Bird2.png")),
-]
+BIRD = [pygame.image.load(os.path.join(IMG_DIR, 'Scene/EvilCuteDog.png'))]
+
+
 
 CLOUD = pygame.image.load(os.path.join(IMG_DIR, 'Other/Cloud.png'))
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
 
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Scene/BG.png'))
-#BG = pygame.transform.scale2x(BG)
 GROUND = pygame.image.load(os.path.join(IMG_DIR, 'Scene/Ground.png'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
+
+####################### TYPE DEFINITION ############################
 DEFAULT_TYPE = "default"
 SHIELD_TYPE = "shield"
