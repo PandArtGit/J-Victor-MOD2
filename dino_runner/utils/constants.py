@@ -51,17 +51,17 @@ for i in range(6):
 ######################################################################################################################
 
 SMALL_CACTUS = [
-    pygame.image.load(os.path.join(IMG_DIR, "Cactus/SmallCactus1.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Cactus/SmallCactus2.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Cactus/SmallCactus3.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bone/Osso1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bone/Osso1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bone/Osso2.png")),
 ]
 LARGE_CACTUS = [
-    pygame.image.load(os.path.join(IMG_DIR, "Cactus/LargeCactus1.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Cactus/LargeCactus2.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Cactus/LargeCactus3.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bone/Osso2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bone/Osso3.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bone/Osso3.png")),
 ]
 
-BIRD = [pygame.image.load(os.path.join(IMG_DIR, 'Scene/EvilCuteDog.png'))]
+DOG = [pygame.image.load(os.path.join(IMG_DIR, 'Scene/EvilCuteDog.png'))]
 
 
 

@@ -50,8 +50,9 @@ class Game:
         self.running = True
         while self.running:
             if not self.playing:
+                
                 self.show_menu()
-                self.handle_events_on_menu() ## MUDEI DE LUGAR
+                self.handle_events_on_menu() 
                 
         
         pygame.display.quit()
@@ -150,16 +151,18 @@ class Game:
         half_screen_width = SCREEN_WIDTH // 2
 
         if self.death_count == 0:
-            draw_message_component("APERTE QUALQUER TECLA PARA INICIAR",
+            draw_message_component("Aperte qualquer tecla para iniciar",
                 self.screen,
+                font_size= 24,
                 pos_x_center= half_screen_width,
                 pos_y_center= half_screen_height + 200
             )
             self.screen.blit(ICON, (half_screen_width - (ICON.get_width()/2), half_screen_height-100))
         else:
             draw_message_component(
-                "PRESSIONE QUALQUER TECLA PARA REINICIAR",
+                "Aperte qualquer tecla para reiniciar",
                 self.screen,
+                font_size= 24,
                 pos_x_center= half_screen_width,
                 pos_y_center= half_screen_height - 200
             )
@@ -170,7 +173,7 @@ class Game:
             )
             self.screen.blit(ICON, (half_screen_width - (ICON.get_width()/2), half_screen_height-100))
     
-    def handle_events_on_menu(self): ## ADICIONEI
+    def handle_events_on_menu(self): 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.playing = False
