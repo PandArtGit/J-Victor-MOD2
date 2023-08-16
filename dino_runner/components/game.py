@@ -25,7 +25,7 @@ class Game:
         self.death_count = 0
         self.game_speed = 20
         self.x_pos_bg = 0
-        self.y_pos_bg = 70
+        self.y_pos_bg = 0
         self.x_pos_ground = 0
         self.y_pos_ground = 380
         self.player = Dinosaur()
@@ -74,7 +74,7 @@ class Game:
     
     def draw(self):
         self.clock.tick(FPS)
-        self.screen.fill((255, 255, 255))
+        self.screen.fill("black")
         
         self.draw_background()
         self.draw_ground()
@@ -94,13 +94,13 @@ class Game:
         if self.x_pos_bg <= -image_width:
             self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
             self.x_pos_bg = 0
-        self.x_pos_bg -= self.game_speed/2
+        self.x_pos_bg -= self.game_speed / 2
     
     def draw_ground(self):
         image_width = GROUND.get_width()
         self.screen.blit(GROUND, (self.x_pos_ground, self.y_pos_ground))
         self.screen.blit(GROUND, (image_width + self.x_pos_ground, self.y_pos_ground))
-        if self.x_pos_ground <= -image_width:
+        if self.x_pos_ground <= -image_width/4:
             self.screen.blit(GROUND, (image_width + self.x_pos_ground, self.y_pos_ground))
             self.x_pos_ground = 0
         self.x_pos_ground -= self.game_speed
@@ -109,8 +109,9 @@ class Game:
         draw_message_component(
             f"PONTUAÇÃO: {self.score}",
             self.screen,
-            pos_x_center= 1000,
-            pos_y_center= 50
+            "white",
+            pos_x_center= SCREEN_WIDTH/2,
+            pos_y_center= SCREEN_HEIGHT - 20
         )
     
     def draw_power_up_time(self):
@@ -118,11 +119,12 @@ class Game:
             time_to_show = round((self.player.power_up_time - pygame.time.get_ticks()) / 1000, 2)
             if time_to_show >= 0:
                 draw_message_component(
-                    f"{self.player.type.capitalize()} FALTAM {time_to_show} SEGUNDOS",
+                    f"<{self.player.type.capitalize()} FALTAM {time_to_show} SEGUNDOS>",
                     self.screen,
+                    "white",
                     font_size= 18,
-                    pos_x_center= 500,
-                    pos_y_center= 40
+                    pos_x_center= SCREEN_WIDTH/2,
+                    pos_y_center= SCREEN_HEIGHT - 45
                 )
             else:
                 self.player.has_power_up = False

@@ -11,45 +11,32 @@ IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 # Assets Constants
 ICON = pygame.image.load(os.path.join(IMG_DIR, "NYANNNN.png"))
 
-# cat_sheet = pygame.image.load(os.path.join(IMG_DIR, "Cat/NyanCatSpriteSheet.png"))  # cat anim
-# RUNNING = []  # cat anim
-# for i in range(6):  # cat anim
-#     img = cat_sheet.subsurface((i * 136, 0), (136, 84))  # cat anim
-#     RUNNING.append(img)  # cat anim
+cat_sheet = pygame.image.load(os.path.join(IMG_DIR, "Cat/NyanCatSpriteSheet.png"))  # cat anim
+RUNNING = []  # cat anim
+for i in range(6):  # cat anim
+    img = cat_sheet.subsurface((i * 136, 0), (136, 84))  # cat anim
+    RUNNING.append(img)  # cat anim
 
-RUNNING = [
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun1.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2.png")),
-]
+cat_sheet = pygame.image.load(os.path.join(IMG_DIR, "Cat/NyanCatSpriteSheet_SHIELD.png"))  # cat anim
+RUNNING_SHIELD = []  # cat anim
+for i in range(6):  # cat anim
+    img = cat_sheet.subsurface((i * 136, 0), (136, 84))  # cat anim
+    RUNNING_SHIELD.append(img)  # cat anim
+#####################################################################################################################
 
-RUNNING_SHIELD = [
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun1Shield.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2.png")),
-]
+cat_sheet_ducking = pygame.image.load(os.path.join(IMG_DIR, "Cat/NyanCatSpriteSheet_DUCK.png"))  # cat anim
+DUCKING = []  # cat anim
+for i in range(6):  # cat anim
+    img = cat_sheet_ducking.subsurface((i * 136, 0), (136, 34))  # cat anim
+    DUCKING.append(img)  # cat anim
 
-RUNNING_HAMMER = [
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1Hammer.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2.png")),
-]
+cat_sheet_ducking_SHIELD = pygame.image.load(os.path.join(IMG_DIR, "Cat/NyanCatSpriteSheet_DUCKSHIELD.png"))  # cat anim
 
-JUMPING = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJump.png"))
-JUMPING_SHIELD = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJumpShield.png"))
-JUMPING_HAMMER = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJumpHammer.png"))
-
-DUCKING = [
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck2.png")),
-]
-
-DUCKING_SHIELD = [
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1Shield.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck2.png")),
-]
-
-DUCKING_HAMMER = [
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1Hammer.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck2.png")),
-]
+DUCKING_SHIELD = []  # cat anim
+for i in range(6):  # cat anim
+    img = cat_sheet_ducking_SHIELD.subsurface((i * 136, 0), (136, 34))  # cat anim
+    DUCKING_SHIELD.append(img)  # cat anim
+######################################################################################################################
 
 SMALL_CACTUS = [
     pygame.image.load(os.path.join(IMG_DIR, "Cactus/SmallCactus1.png")),
@@ -72,6 +59,7 @@ SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
 
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Scene/BG.png'))
+#BG = pygame.transform.scale2x(BG)
 GROUND = pygame.image.load(os.path.join(IMG_DIR, 'Scene/Ground.png'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
