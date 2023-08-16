@@ -134,19 +134,25 @@ class Game:
         half_screen_width = SCREEN_WIDTH // 2
 
         if self.death_count == 0:
-            draw_message_component("APERTE QUALQUER TECLA PARA INICIAR", self.screen)
+            draw_message_component("APERTE QUALQUER TECLA PARA INICIAR",
+                self.screen,
+                pos_x_center= half_screen_width,
+                pos_y_center= half_screen_height + 200
+            )
+            self.screen.blit(ICON, (half_screen_width - (ICON.get_width()/2), half_screen_height-100))
         else:
             draw_message_component(
                 "PRESSIONE QUALQUER TECLA PARA REINICIAR",
                 self.screen,
-                pos_x_center= half_screen_height + 140
+                pos_x_center= half_screen_width,
+                pos_y_center= half_screen_height - 200
             )
             draw_message_component(
                 f"SUA PONTUAÇÃO: {self.score}",
                 self.screen,
-                pos_y_center= half_screen_width - 100
+                pos_y_center= half_screen_width
             )
-            self.screen.blit(ICON, (half_screen_width - 40, half_screen_height - 30))
+            self.screen.blit(ICON, (half_screen_width - (ICON.get_width()/2), half_screen_height-100))
     
     def handle_events_on_menu(self): ## ADICIONEI
         for event in pygame.event.get():
