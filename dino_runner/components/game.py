@@ -148,7 +148,7 @@ class Game:
                 self.player.type = DEFAULT_TYPE
     
     def show_menu(self):
-        self.screen.fill("white")
+        self.screen.fill("grey")
         half_screen_height = SCREEN_HEIGHT // 2
         half_screen_width = SCREEN_WIDTH // 2
 
@@ -174,6 +174,11 @@ class Game:
                 f"SUA PONTUAÇÃO: {self.score}",
                 self.screen,
                 pos_y_center= half_screen_width
+            )
+            draw_message_component(
+                f"SUAS MORTES: {self.death_count}",
+                self.screen,
+                pos_y_center= half_screen_width - 50
             )
             self.screen.blit(FLAG_SELECT[self.flag_select], (half_screen_width - (FLAG_SELECT[self.flag_select].get_width()/2), half_screen_height-150))
             self.screen.blit(ICON, (half_screen_width - (ICON.get_width()/2), half_screen_height-100))
