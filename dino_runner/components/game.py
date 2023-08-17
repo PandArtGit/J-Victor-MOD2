@@ -6,6 +6,7 @@ from dino_runner.utils.constants import(
     GROUND,
     BG,
     ICON,
+    FLAG_SELECT,
     SCREEN_HEIGHT,
     SCREEN_WIDTH,
     TITLE,FPS,
@@ -31,6 +32,7 @@ class Game:
         self.running = False
         self.score = 0
         self.death_count = 0
+        self.flag_select = 0
 
 ######## difficulty ###########
         self.game_speed = 0 
@@ -151,16 +153,18 @@ class Game:
         half_screen_width = SCREEN_WIDTH // 2
 
         if self.death_count == 0:
-            draw_message_component("Aperte qualquer tecla para iniciar",
+            draw_message_component("Aperte ESPAÇO para iniciar",
                 self.screen,
                 font_size= 24,
                 pos_x_center= half_screen_width,
                 pos_y_center= half_screen_height + 200
             )
+            self.screen.blit(FLAG_SELECT[self.flag_select], (half_screen_width - (FLAG_SELECT[self.flag_select].get_width()/2), half_screen_height-150))
             self.screen.blit(ICON, (half_screen_width - (ICON.get_width()/2), half_screen_height-100))
+            
         else:
             draw_message_component(
-                "Aperte qualquer tecla para reiniciar",
+                "Aperte ESPAÇO para reiniciar",
                 self.screen,
                 font_size= 24,
                 pos_x_center= half_screen_width,
@@ -171,17 +175,31 @@ class Game:
                 self.screen,
                 pos_y_center= half_screen_width
             )
+            self.screen.blit(FLAG_SELECT[self.flag_select], (half_screen_width - (FLAG_SELECT[self.flag_select].get_width()/2), half_screen_height-150))
             self.screen.blit(ICON, (half_screen_width - (ICON.get_width()/2), half_screen_height-100))
     
-    def handle_events_on_menu(self): 
+    def handle_events_on_menu(self):
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.playing = False
                 self.running = False
 
             elif event.type == pygame.KEYDOWN:
-                self.run()
-
+                if event.key == pygame.K_SPACE: 
+                    self.run()
+                if event.key == pygame.K_RIGHT:
+                    if self.flag_select < len(FLAG_SELECT) - 1:
+                        self.flag_select += 1
+                    else:
+                        self.flag_select = 0
+                if event.key == pygame.K_LEFT:
+                    if self.flag_select > 0:
+                        self.flag_select -= 1
+                    else:
+                        self.flag_select = len(FLAG_SELECT) - 1
+                self.player.flag_select = self.flag_select
+            
         pygame.display.flip()
 
     

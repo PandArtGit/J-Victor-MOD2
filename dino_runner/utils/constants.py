@@ -46,6 +46,21 @@ DUCKING_SHIELD = []
 for i in range(6):   
     img = cat_sheet_ducking_SHIELD.subsurface((i * 136, 0), (136, 34))   
     DUCKING_SHIELD.append(img)
+########################## PRIDE FLAGS ##################################################################
+######################################################################################################################
+
+flags_spritessheet = pygame.image.load(os.path.join(IMG_DIR, "Cat/NyanCatRastro.png"))   
+
+FLAG_SELECT = []   
+for i in range(9):   
+    img = flags_spritessheet.subsurface((i * 66, 0), (66, 34))   
+    FLAG_SELECT.append(img)
+
+FLAG_TRACE = []
+for i in range(9):   
+    img = flags_spritessheet.subsurface((i * 64, 34), (64, 34))   
+    FLAG_TRACE.append(img)
+
 
 ########################## SPRITES OF GAME ##################################################################
 ######################################################################################################################
